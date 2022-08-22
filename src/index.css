@@ -1,13 +1,46 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+:root {
+  --text: hsl(200, 15%, 8%);
+  --elements: hsl(0, 0%, 100%);
+  --input: hsl(0, 0%, 52%);
+  --background: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 83%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="true"] {
+  --text: hsl(0, 0%, 100%);
+  --elements: hsl(209, 23%, 22%);
+  --background: hsl(207, 26%, 17%);
+  --input: hsl(0, 0%, 100%);
+  --border: hsl(208, 26%, 11%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: var(--background);
+}
+
+main {
+  padding: 2rem 3rem;
+  background-color: var(--background);
+  box-shadow: inset 0 2px 5px var(--border); /* after adding background color on main, header shadow disappears, any better solutions? */
+  min-height: calc(100vh - 3.6rem);
+  overflow: hidden; /* better solution? */
 }

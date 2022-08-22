@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { useContext, useState } from "react";
+import Header from "./components/Header";
+import ThemeContext from "./store/theme-context";
+import CountryDetail from "./pages/CountryDetail";
+import HomePage from "./pages/HomePage";
 
 function App() {
+  const { darkTheme } = useContext(ThemeContext);
+  const [country, setCountry] = useState("");
+  const searchHandler = (searchedCountry) => {
+    setCountry(searchedCountry);
+  };
+
+  const [region, setRegion] = useState("");
+  const filterHandler = (filteredRegion) => {
+    setRegion(filteredRegion);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div data-theme={darkTheme} className="app">
+      <Header />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                onSearch={searchHandler}
+                onFilter={filterHandler}
+                country={country}
+                region={region}
+              />
+            }
+          />
+          <Route path=":countryId" element={<CountryDetail />} />
+        </Routes>
+      </main>
     </div>
   );
 }

@@ -1,0 +1,5 @@
+.card {
+  background-color: var(--elements);
+  color: var(--text);
+  border-radius: 5px;
+}

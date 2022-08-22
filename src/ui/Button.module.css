@@ -1,0 +1,8 @@
+.btn {
+  color: var(--text);
+  background-color: var(--elements);
+  border: none;
+  box-shadow: 0 0 5px var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+}

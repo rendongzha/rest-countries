@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 16px;
+  gap: 5rem;
+}
+
+.flag {
+  width: 24rem;
+  height: 16rem;
+  object-fit: cover;
+}
+
+.countryInfo {
+  width: 45rem;
+  color: var(--text);
+}
+
+.countryInfo h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.detailInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.detail1 {
+  width: 50%;
+}
+.detail2 {
+  width: 50%;
+}
+
+.countryInfo p {
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.countryInfo p span {
+  font-weight: 300;
+}
+
+.borderCountries {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}

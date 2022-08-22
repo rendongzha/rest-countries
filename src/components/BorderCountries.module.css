@@ -1,0 +1,15 @@
+.borderContainer {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.borderBtn {
+  padding: 0.3rem 1rem;
+  font-weight: 300;
+  width: 7rem;
+  height: 1.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
