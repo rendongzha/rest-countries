@@ -1,39 +1,36 @@
-import { useState, useEffect } from "react";
+// import { useState } from "react";
 import { GoSearch } from "react-icons/go";
 import classes from "./SearchFilter.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { changeSearch } from "../store/searchSlice";
+import { changeFilter } from "../store/filterSlice";
 
 const SearchFilter = (props) => {
-  const [inputCountry, setInputCountry] = useState(() => {
-    if (localStorage.getItem("search"))
-      return JSON.parse(localStorage.getItem("search"));
+  // const [inputCountry, setInputCountry] = useState("");
 
-    return "";
-  });
+  // const [selectedRegion, setSelectedRegion] = useState("");
 
-  const [selectedRegion, setSelectedRegion] = useState(() => {
-    if (localStorage.getItem("filter"))
-      return JSON.parse(localStorage.getItem("filter"));
+  // const inputHandler = (e) => {
+  //   setInputCountry(e.target.value);
+  //   props.onSearch(e.target.value);
+  // };
 
-    return "";
-  });
+  // const selectHandler = (e) => {
+  //   setSelectedRegion(e.target.value);
+  //   props.onFilter(e.target.value);
+  // };
 
-  const inputHandler = (e) => {
-    setInputCountry(e.target.value);
-    props.onSearch(e.target.value);
+  const search = useSelector((state) => state.search.value);
+  const filter = useSelector((state) => state.filter.value);
+  const dispatch = useDispatch();
+
+  const changeSearchHandler = (e) => {
+    dispatch(changeSearch(e.target.value));
   };
 
-  const selectHandler = (e) => {
-    setSelectedRegion(e.target.value);
-    props.onFilter(e.target.value);
+  const changeFilterHandler = (e) => {
+    dispatch(changeFilter(e.target.value));
   };
-
-  useEffect(() => {
-    localStorage.setItem("search", JSON.stringify(inputCountry));
-  }, [inputCountry]);
-
-  useEffect(() => {
-    localStorage.setItem("filter", JSON.stringify(selectedRegion));
-  }, [selectedRegion]);
 
   return (
     <div className={classes.searchFilter}>
@@ -43,16 +40,16 @@ const SearchFilter = (props) => {
           type="text"
           placeholder="Search for a country..."
           name="country"
-          value={inputCountry}
-          onChange={inputHandler}
+          value={search}
+          onChange={changeSearchHandler}
           className={classes.input}
         />
       </div>
 
       <div className={classes["select-wrapper"]}>
         <select
-          value={selectedRegion}
-          onChange={selectHandler}
+          value={filter}
+          onChange={changeFilterHandler}
           className={classes.filter}
         >
           {/* two-way binding to get the value of selected option */}

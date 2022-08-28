@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import CountryDetailItem from "../components/CountryDetailItem";

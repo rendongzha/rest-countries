@@ -29,18 +29,24 @@ const CountryDetailItem = (props) => {
   if (!detailedCountry) return;
 
   let nativeName = "";
-  const nativeNameObj = detailedCountry.name.nativeName;
-  Object.keys(nativeNameObj).forEach(
-    (key) => (nativeName = nativeNameObj[key].official)
-  );
+  if (detailedCountry.name.nativeName) {
+    const nativeNameObj = detailedCountry.name.nativeName;
+    Object.keys(nativeNameObj).forEach(
+      (key) => (nativeName = nativeNameObj[key].official)
+    );
+  }
 
   const currencies = [];
-  const curObj = detailedCountry.currencies;
-  Object.keys(curObj).forEach((key) => currencies.push(curObj[key].name));
+  if (detailedCountry.currencies) {
+    const curObj = detailedCountry.currencies;
+    Object.keys(curObj).forEach((key) => currencies.push(curObj[key].name));
+  }
 
   const languages = [];
-  const lanObj = detailedCountry.languages;
-  Object.keys(lanObj).forEach((key) => languages.push(lanObj[key]));
+  if (detailedCountry.languages) {
+    const lanObj = detailedCountry.languages;
+    Object.keys(lanObj).forEach((key) => languages.push(lanObj[key]));
+  }
 
   return (
     <div className={classes.container}>
@@ -54,7 +60,7 @@ const CountryDetailItem = (props) => {
         <div className={classes.detailInfo}>
           <div className={classes.detail1}>
             <p>
-              Native Name: <span>{nativeName}</span>
+              Native Name: <span>{nativeName || "None"}</span>
             </p>
             <p>
               Population:{" "}
@@ -68,7 +74,7 @@ const CountryDetailItem = (props) => {
               Region: <span>{detailedCountry.region}</span>
             </p>
             <p>
-              Sub Region: <span>{detailedCountry.subregion}</span>
+              Sub Region: <span>{detailedCountry.subregion || "None"}</span>
             </p>
             <p>
               Capital: <span>{detailedCountry.capital || "None"}</span>
@@ -79,10 +85,10 @@ const CountryDetailItem = (props) => {
               Top Level Domain: <span>{detailedCountry.tld[0]}</span>
             </p>
             <p>
-              Currencies: <span>{currencies.join(", ")}</span>
+              Currencies: <span>{currencies.join(", ") || "None"}</span>
             </p>
             <p>
-              Languages: <span>{languages.join(", ")}</span>
+              Languages: <span>{languages.join(", ") || "None"}</span>
             </p>
           </div>
         </div>

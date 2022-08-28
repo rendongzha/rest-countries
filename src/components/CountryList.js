@@ -1,11 +1,15 @@
 import CountryItem from "./CountryItem";
 import classes from "./CountryList.module.css";
+import { useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
 
 const CountryList = (props) => {
   const [countries, setCountries] = useState([]);
   const [allCountries, setAllCountries] = useState([]);
+
+  const search = useSelector((state) => state.search.value);
+  const filter = useSelector((state) => state.filter.value);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -27,25 +31,19 @@ const CountryList = (props) => {
 
   useEffect(() => {
     let filteredCountries, searchedCountries;
-    if (!props.filteredRegion) filteredCountries = allCountries;
-    if (
-      ["Africa", "Americas", "Asia", "Europe", "Oceania"].includes(
-        props.filteredRegion
-      )
-    ) {
+    if (!filter) filteredCountries = allCountries;
+    if (["Africa", "Americas", "Asia", "Europe", "Oceania"].includes(filter)) {
       filteredCountries = allCountries.filter(
-        (country) => country.region === props.filteredRegion
+        (country) => country.region === filter
       );
     }
-    if (!props.searchedCountry) searchedCountries = filteredCountries;
-    if (props.searchedCountry)
+    if (!search) searchedCountries = filteredCountries;
+    if (search)
       searchedCountries = filteredCountries.filter((country) =>
-        country.name.official
-          .toLowerCase()
-          .includes(props.searchedCountry.toLowerCase())
+        country.name.official.toLowerCase().includes(search.toLowerCase())
       );
     setCountries(searchedCountries);
-  }, [allCountries, props.filteredRegion, props.searchedCountry]);
+  }, [allCountries, filter, search]);
 
   const sortedCountries = [...countries].sort((country1, country2) =>
     country1.name.official.localeCompare(country2.name.official)
