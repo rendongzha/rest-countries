@@ -24,7 +24,7 @@ const CountryItem = (props) => {
               Region: <span>{props.region}</span>
             </p>
             <p>
-              Capital: <span>{props.capital}</span>
+              Capital: <span>{props.capital || "None"}</span>
             </p>
           </div>
         </Card>

@@ -71,7 +71,7 @@ const CountryDetailItem = (props) => {
               Sub Region: <span>{detailedCountry.subregion}</span>
             </p>
             <p>
-              Capital: <span>{detailedCountry.capital}</span>
+              Capital: <span>{detailedCountry.capital || "None"}</span>
             </p>
           </div>
           <div className={classes.detail2}>

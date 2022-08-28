@@ -1,36 +1,54 @@
-import { useRef, Fragment, useState } from "react";
+import { useState, useEffect } from "react";
 import { GoSearch } from "react-icons/go";
 import classes from "./SearchFilter.module.css";
 
 const SearchFilter = (props) => {
-  const countryRef = useRef();
-  const [selectedRegion, setSelectedRegion] = useState("");
+  const [inputCountry, setInputCountry] = useState(() => {
+    if (localStorage.getItem("search"))
+      return JSON.parse(localStorage.getItem("search"));
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    props.onSearch(countryRef.current.value);
+    return "";
+  });
+
+  const [selectedRegion, setSelectedRegion] = useState(() => {
+    if (localStorage.getItem("filter"))
+      return JSON.parse(localStorage.getItem("filter"));
+
+    return "";
+  });
+
+  const inputHandler = (e) => {
+    setInputCountry(e.target.value);
+    props.onSearch(e.target.value);
   };
 
   const selectHandler = (e) => {
-    console.log(e.target.value);
     setSelectedRegion(e.target.value);
     props.onFilter(e.target.value);
   };
 
+  useEffect(() => {
+    localStorage.setItem("search", JSON.stringify(inputCountry));
+  }, [inputCountry]);
+
+  useEffect(() => {
+    localStorage.setItem("filter", JSON.stringify(selectedRegion));
+  }, [selectedRegion]);
+
   return (
     <div className={classes.searchFilter}>
-      <form onSubmit={submitHandler}>
-        <div className={classes.search}>
-          <GoSearch className={classes.searchIcon} onClick={submitHandler} />
-          <input
-            type="text"
-            placeholder="Search for a country..."
-            name="country"
-            ref={countryRef}
-            className={classes.input}
-          />
-        </div>
-      </form>
+      <div className={classes.search}>
+        <GoSearch className={classes.searchIcon} />
+        <input
+          type="text"
+          placeholder="Search for a country..."
+          name="country"
+          value={inputCountry}
+          onChange={inputHandler}
+          className={classes.input}
+        />
+      </div>
+
       <div className={classes["select-wrapper"]}>
         <select
           value={selectedRegion}

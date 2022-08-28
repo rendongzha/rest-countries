@@ -8,7 +8,6 @@ const CountryList = (props) => {
   const [allCountries, setAllCountries] = useState([]);
 
   useEffect(() => {
-
     const fetchCountries = async () => {
       try {
         const res = await fetch("https://restcountries.com/v3.1/all");
@@ -26,7 +25,6 @@ const CountryList = (props) => {
     fetchCountries();
   }, []);
 
-  
   useEffect(() => {
     let filteredCountries, searchedCountries;
     if (!props.filteredRegion) filteredCountries = allCountries;
@@ -49,9 +47,13 @@ const CountryList = (props) => {
     setCountries(searchedCountries);
   }, [allCountries, props.filteredRegion, props.searchedCountry]);
 
+  const sortedCountries = [...countries].sort((country1, country2) =>
+    country1.name.official.localeCompare(country2.name.official)
+  );
+
   return (
     <ul className={classes.container}>
-      {countries.map((country) => (
+      {sortedCountries.map((country) => (
         <CountryItem
           key={country.name.official}
           img={country.flags.png}
