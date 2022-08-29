@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import CountryList from "../components/CountryList";
 import SearchFilter from "../components/SearchFilter";
 

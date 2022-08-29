@@ -5,7 +5,6 @@ import CountryDetailItem from "../components/CountryDetailItem";
 
 const CountryDetail = (props) => {
   let { countryId } = useParams();
-  console.log(countryId);
 
   return (
     <Fragment>

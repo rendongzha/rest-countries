@@ -14,7 +14,6 @@ const CountryDetailItem = (props) => {
         if (!res.ok) throw new Error("Fetching country failed!");
 
         const data = await res.json();
-        console.log(data);
         setDetailedCountry(data[0]);
       } catch (err) {
         alert(err);
@@ -23,8 +22,6 @@ const CountryDetailItem = (props) => {
 
     fetchCountry();
   }, [props.countryCode]);
-
-  console.log(detailedCountry);
 
   if (!detailedCountry) return;
 

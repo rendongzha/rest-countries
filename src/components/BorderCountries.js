@@ -19,10 +19,8 @@ const BorderCountries = (props) => {
         if (!res.ok) throw new Error("Fetching country failed!");
 
         const data = await res.json();
-        console.log(data);
         setBorderCountries(data);
       } catch (err) {
-        console.error(err);
         alert(err);
       }
     };

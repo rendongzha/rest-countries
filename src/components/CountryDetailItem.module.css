@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
   font-size: 16px;
   gap: 5rem;
 }
@@ -29,9 +29,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.detail1 {
-  width: 50%;
-}
+.detail1,
 .detail2 {
   width: 50%;
 }
@@ -49,4 +47,27 @@
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .detailInfo {
+    flex-direction: column;
+  }
+
+  .countryInfo {
+    width: 24rem;
+  }
+
+  .detail1,
+  .detail2 {
+    width: 100%;
+  }
+
+  .detail2 {
+    margin-top: 2rem;
+  }
 }
